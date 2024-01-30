@@ -7,22 +7,22 @@
 
 - از ابزار OpenSSL برای ایجاد یک CA استفاده کنید.
 - ایجاد کلید خصوصی و گواهینامه CA:
-‏  ```
+‏ 
 ‏  openssl genpkey -algorithm RSA -out rootCA.key
 ‏  openssl req -x509 -new -key rootCA.key -out rootCA.crt
-  ```
+
 
 ## 2. صادر کردن گواهینامه برای سرور
 
 - ایجاد یک کلید خصوصی و درخواست گواهینامه برای سرور:
-‏  ```
+
 ‏  openssl genpkey -algorithm RSA -out server.key
 ‏  openssl req -new -key server.key -out server.csr
-  ```
+
 - امضای درخواست گواهینامه توسط CA:
-‏  ```
+‏  
 ‏  openssl x509 -req -in server.csr -CA rootCA.crt -CAkey rootCA.key -CAcreateserial -out server.crt -days 365
-  ```
+
 
 ## 3. تنظیم و اعمال گواهینامه در سرور
 
